@@ -20,13 +20,12 @@
  * - "/" (POST): Handles city search requests and displays search results.
  * - "/weather" (POST): Displays weather and forecast information for a chosen city.
  *
- * To use this code, make sure to replace 'ebae888272dad0bbfe6c6033beee7c35' with your OpenWeatherMap API key.
  */
 
 import express from "express";
 import axios from "axios";
 import bodyParser from "body-parser";
-import { API_KEY } from "./config.mjs"; // Use the correct file path
+import { API_KEY } from "./config.mjs"; // file containing API key
 
 const app = express();
 const port = 3000;
