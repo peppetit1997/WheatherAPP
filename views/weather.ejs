@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather</title>
+    <link rel="stylesheet" type="text/css" href="/styles/main.css" />
+  </head>
+  <body>
+    <div class="weather-container">
+      <% if (locals.weatherData) { %>
+      <div class="weather-info">
+       current condition for <%= weatherData.name %>, <%= weatherData.sys.country %>
+      </div>
+      <div class="weather-info">
+        <img src="https://openweathermap.org/img/wn/<%= weatherData.weather[0].icon %>@2x.png" alt="Image Description" />
+      </div>
+      <div class="weather-info"><%= weatherData.weather[0].description %></div>      
+      <div class="weather-info">
+       currently <%= weatherData.main.temp %>°C but feels like:
+        <%=weatherData.main.feels_like%>°C
+      <div class="weather-info">
+        Maximal temp: <%= weatherData.main.temp_max %>°C Minimal temp: <%=
+        weatherData.main.temp_min %>°C
+      </div>
+      <div class="weather-info">
+        Humidity: <%= weatherData.main.humidity %>%
+      </div>
+      <% } %>
+    </div>
+    <h1>Weather forecast</h1>
+    <div class="forecast-container">
+      <% if (locals.forecastData) { %> <% for (const entry of forecastData.list)
+      { %> <% const time = entry.dt_txt; // date and time of the forecast %> <%
+      const temperature = entry.main.temp; // Temperature in this forecast %> <%
+      const weatherDescription = entry.weather[0].description; // Weather %> <%
+      const weatherIcon = entry.weather[0].icon; %>
+
+      <div class="forecast-item">
+        <div class="forecast-info"><%= time %></div>
+        <div class="forecast-info"><%= temperature %>°C</div>
+        <div class="forecast-info"><%= weatherDescription %></div>
+        <div class="forecast-info">
+          <img src="https://openweathermap.org/img/wn/<%= entry.weather[0].icon %>@2x.png" alt="Image Description" /></div>
+      </div>
+      <% } %> <% } %>
+    </div>
+  </body>
+</html>
